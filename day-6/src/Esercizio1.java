@@ -53,7 +53,7 @@ public class Esercizio1 {
 				stampaArray(arrNum);
 				
 			}catch(Exception e) {
-				log.error("si è verificato un errore");
+				log.error(e.getMessage());
 			}
 		}while(true);
 
