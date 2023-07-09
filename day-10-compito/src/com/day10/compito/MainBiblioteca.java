@@ -2,11 +2,9 @@ package com.day10.compito;
 
 import java.io.File;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
@@ -32,29 +30,29 @@ public class MainBiblioteca {
 		Rivista r2 = new Rivista("002R","Scenario. Rivista mensile delle arti della scena.",1938, 35, Periodicita.MENSILE);
 		Rivista r3 = new Rivista("003R","L'illustrazione italiana. Rivista settimanale.",1915 , 16, Periodicita.SETTIMANALE);
 		
-		aggiungiElemento(r1);
-		aggiungiElemento(l1);
-		aggiungiElemento(r2);
-		aggiungiElemento(r3);
-		aggiungiElemento(l2);
-		aggiungiElemento(l3);
-		aggiungiElemento(l4);
+			aggiungiElemento(r1);
+			aggiungiElemento(l1);
+			aggiungiElemento(r2);
+			aggiungiElemento(r3);
+			aggiungiElemento(l2);
+			aggiungiElemento(l3);
+			aggiungiElemento(l4);
 		
-		//stampaElementi();
-		
-		log.info("Il risultato della ricerca è: " + ricercaPerISBN("002R"));
-		//log.info("Il risultato della ricerca è: " + ricercaPerAnnoPubblicazione(1915));
-		//log.info("Il risultato della ricerca è: " + ricercaPerAutore("Koby Bryant"));
-		//rimuoviElemento("003L");
-		//stampaElementi();
-		
-		 try {
+			//stampaElementi();
+			
+			//log.info("Il risultato della ricerca è: " + ricercaPerISBN("002R"));
+			//log.info("Il risultato della ricerca è: " + ricercaPerAnnoPubblicazione(1915));
+			//log.info("Il risultato della ricerca è: " + ricercaPerAutore("Koby Bryant"));
+			//rimuoviElemento("003L");
+			//stampaElementi();
+		 
+		try {
 			 salvaSuFile();
 			 elementi = caricaDaFile();
+			 
 			 stampaElementi();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error("OPS!! C'È QUALCOSA CHE NON VA");
 		}
 	}
 	
@@ -122,7 +120,7 @@ public class MainBiblioteca {
 				 elementi.add(l);
 			 }else if(par.length == 5) {
 				 Rivista r = new Rivista(par[0], par[1], Integer.parseInt(par[2].trim()), Integer.parseInt(par[3].trim()),Periodicita.valueOf(par[4].trim()) );
-				 elementi.add(r);
+				elementi.add(r);
 			 }
 			 
 		 }
