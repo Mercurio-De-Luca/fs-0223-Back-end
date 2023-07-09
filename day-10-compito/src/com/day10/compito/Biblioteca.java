@@ -1,31 +1,33 @@
 package com.day10.compito;
 
-import java.time.LocalDate;
-
 public abstract class Biblioteca {
 
-	String ISBN;
+	String Isbn;
 	String titolo;
-	LocalDate AnnoPubblicazione;
+	int annoPubblicazione;
 	int numeroPagine;
 	
-	
-	public Biblioteca(String iSBN, String titolo, LocalDate annoPubblicazione, int numeroPagine) {
+	public Biblioteca(String isbn, String titolo, int annoPubblicazione, int numeroPagine) {
 		super();
-		ISBN = iSBN;
+		Isbn = isbn;
 		this.titolo = titolo;
-		AnnoPubblicazione = annoPubblicazione;
-		numeroPagine = numeroPagine;
+		this.annoPubblicazione = annoPubblicazione;
+		this.numeroPagine = numeroPagine;
 	}
 
-
-	public LocalDate getAnnoPubblicazione() {
-		return AnnoPubblicazione;
+	public String getIsbn() {
+		return Isbn;
 	}
 
-
-	public void setAnnoPubblicazione(LocalDate annoPubblicazione) {
-		AnnoPubblicazione = annoPubblicazione;
+	public String getTitolo() {
+		return titolo;
 	}
 
+	public int getAnnoPubblicazione() {
+		return annoPubblicazione;
+	}
+
+	public int getNumeroPagine() {
+		return numeroPagine;
+	}
 }
