@@ -1,7 +1,12 @@
 package com.compito.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class ElementoBibliotecario {
 	
+	@Id
 	private String isbn;
 	private String titolo;
 	private int annoPubblicazione;
@@ -14,13 +19,12 @@ public class ElementoBibliotecario {
 	}
 
 
-	public ElementoBibliotecario(String isbn, String titolo, int annoPubblicazione, int numeroPagine) {
-		super();
-		this.isbn = isbn;
-		this.titolo = titolo;
-		this.annoPubblicazione = annoPubblicazione;
-		this.numeroPagine = numeroPagine;
-	}
+	 public ElementoBibliotecario(String isbn, String titolo, int annoPubblicazione, int numeroPagine) {
+		 this.isbn = isbn;
+		 this.titolo = titolo;
+		 this.annoPubblicazione = annoPubblicazione;
+		 this.numeroPagine = numeroPagine;
+	    }
 
 
 	public String getIsbn() {

@@ -1,5 +1,8 @@
 package com.compito.model;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Libro extends ElementoBibliotecario {
 	
 	private String autore;
@@ -8,19 +11,13 @@ public class Libro extends ElementoBibliotecario {
 	
 	public Libro() {
 		super();
-		
-	}
-	
-	public Libro(String isbn, String titolo, int annoPubblicazione, int numeroPagine) {
-		super(isbn, titolo, annoPubblicazione, numeroPagine);
-		// TODO Auto-generated constructor stub
 	}
 
-	public Libro(String autore, String genere) {
-		super();
-		this.autore = autore;
-		this.genere = genere;
-	}
+    public Libro(String isbn, String titolo, int annoPubblicazione, int numeroPagine, String autore, String genere) {
+        super(isbn, titolo, annoPubblicazione, numeroPagine);
+        this.autore = autore;
+        this.genere = genere;
+    }
 
 	public String getAutore() {
 		return autore;
