@@ -27,12 +27,19 @@ public class Prestito {
 		// TODO Auto-generated constructor stub
 	}
 
-    public Prestito(Utente utente, ElementoBibliotecario elementoPrestato, LocalDate dataInizioPrestito) {
-        this.utente = utente;
-        this.elementoPrestato = elementoPrestato;
-        this.dataInizioPrestito = dataInizioPrestito;
-        this.dataRestituzionePrevista = dataInizioPrestito.plusDays(30);
-    }
+    
+
+	public Prestito(Utente utente, ElementoBibliotecario elementoPrestato, LocalDate dataInizioPrestito,
+			LocalDate dataRestituzionePrevista, LocalDate dataRestituzioneEffettiva) {
+		super();
+		this.utente = utente;
+		this.elementoPrestato = elementoPrestato;
+		this.dataInizioPrestito = dataInizioPrestito;
+		this.dataRestituzionePrevista = dataRestituzionePrevista.plusDays(30);
+		this.dataRestituzioneEffettiva = dataRestituzioneEffettiva;
+	}
+
+
 
 	public Long getId() {
 		return id;
