@@ -50,7 +50,7 @@ public class MainArchivio {
 		//aggiungiElementoBibliotecario(r3);
 		
 		//rimuoviElemento("001L");
-		//ElementoBibliotecario r = ricercaPerIsbn("002L");
+		//ElementoBibliotecario r = ricercaPerIsbn("003R");
 		//System.out.println(r);
 
 		//List<ElementoBibliotecario>  e = ricercaPerAnno(2018);
@@ -111,7 +111,9 @@ public class MainArchivio {
 		em.getTransaction().commit();
 	}
 	public static ElementoBibliotecario ricercaPerIsbn(String isbn) {
+		em.getTransaction().begin();
 		ElementoBibliotecario e = em.find(ElementoBibliotecario.class, isbn);
+		em.getTransaction().commit();
 		return e;
 	}
 	
