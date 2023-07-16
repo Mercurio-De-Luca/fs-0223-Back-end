@@ -1,5 +1,6 @@
 package com.compito.model;
 
+
 import javax.persistence.Entity;
 
 @Entity
@@ -37,7 +38,7 @@ public class Libro extends ElementoBibliotecario {
 
 	@Override
 	public String toString() {
-		return "Libro [autore=" + autore + ", genere=" + genere + "]";
+		return "Libro [ isbn= " + getIsbn() + ", titolo= " + getTitolo() + ", anno di pubblicazione= " + getAnnoPubblicazione() + ", numero di pagine= " + getNumeroPagine() + ", autore=" + autore + ", genere=" + genere + "]";
 	}
 	
 	

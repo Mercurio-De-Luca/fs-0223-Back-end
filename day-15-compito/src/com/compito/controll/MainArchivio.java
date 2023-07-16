@@ -1,5 +1,6 @@
 package com.compito.controll;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class MainArchivio {
 	static EntityManager em = emf.createEntityManager();
 
 	public static void main(String[] args) {
-		
+		try {
 		Libro l1 = new Libro("001L", "La mentalità vincente",2018, 160,"George Mumford", "Sport");
 		Libro l2 = new Libro("002L", "The Mamba mentality. Il mio basket ",2018, 210,"Koby Bryant", "Sport");
 		Libro l3 = new Libro("003L", "Adrenalina. My untold stories",2018, 272,"Zlatan Ibrahimović ", "Sport");
@@ -50,8 +51,8 @@ public class MainArchivio {
 		//aggiungiElementoBibliotecario(r3);
 		
 		//rimuoviElemento("001L");
-		//ElementoBibliotecario r = ricercaPerIsbn("003R");
-		//System.out.println(r);
+		ElementoBibliotecario r = ricercaPerIsbn("003R");
+		System.out.println(r);
 
 		//List<ElementoBibliotecario>  e = ricercaPerAnno(2018);
 		//System.out.println(e);
@@ -83,65 +84,70 @@ public class MainArchivio {
 		//for (Prestito prestito : prestitiScaduti) {
 		//    System.out.println(prestito.getUtente().getNome() + prestito.getUtente().getCognome() +  prestito.getElementoPrestato().getTitolo());
 		//}
-
+		} catch(SQLException  e) {
+			System.err.println(e.getMessage());
+		} finally {
+			em.close();
+			emf.close();
+		}
 
 
 	}
 	
-	public static void aggiungiElementoBibliotecario(ElementoBibliotecario e) {
+	public static void aggiungiElementoBibliotecario(ElementoBibliotecario e) throws SQLException {
 		em.getTransaction().begin();
         em.persist(e);
         em.getTransaction().commit();
 	}
-	public static void aggiungiUtente(Utente e) {
+	public static void aggiungiUtente(Utente e) throws SQLException {
 		em.getTransaction().begin();
         em.persist(e);
         em.getTransaction().commit();
 	}
-	public static void aggiungiPrestito(Prestito p) {
+	public static void aggiungiPrestito(Prestito p) throws SQLException {
 		em.getTransaction().begin();
         em.persist(p);
         em.getTransaction().commit();
 	}
 	
-	public static void rimuoviElemento(String isbn) {
+	public static void rimuoviElemento(String isbn) throws SQLException {
 		em.getTransaction().begin();
 		ElementoBibliotecario e = em.find(ElementoBibliotecario.class, isbn);
 		em.remove(e);
 		em.getTransaction().commit();
 	}
-	public static ElementoBibliotecario ricercaPerIsbn(String isbn) {
+	public static ElementoBibliotecario ricercaPerIsbn(String isbn) throws SQLException {
 		em.getTransaction().begin();
 		ElementoBibliotecario e = em.find(ElementoBibliotecario.class, isbn);
 		em.getTransaction().commit();
 		return e;
 	}
 	
-	public static List<ElementoBibliotecario> ricercaPerAnno(int a ) {
+	public static List<ElementoBibliotecario> ricercaPerAnno(int a ) throws SQLException {
 		List<ElementoBibliotecario> e = em.createQuery("SELECT e FROM ElementoBibliotecario e WHERE e.annoPubblicazione = :anno", ElementoBibliotecario.class)
 				.setParameter("anno",a)
 				.getResultList();
 		return e;
 	}
-	public static  List<ElementoBibliotecario> ricercaAutore(String a) {
+	public static  List<ElementoBibliotecario> ricercaAutore(String a) throws SQLException {
 		List<ElementoBibliotecario> e = em.createQuery("SELECT e FROM ElementoBibliotecario e WHERE e.autore = :autore", ElementoBibliotecario.class)
 				.setParameter("autore",a)
 				.getResultList();
 		return e;
 	}
-	public static List<ElementoBibliotecario> ricercaPerTitolo(String t) {
+	public static List<ElementoBibliotecario> ricercaPerTitolo(String t) throws SQLException {
 	    List<ElementoBibliotecario> e = em.createQuery("SELECT e FROM ElementoBibliotecario e WHERE e.titolo LIKE :titolo", ElementoBibliotecario.class)
 	            .setParameter("titolo", "%" + t + "%")
 	            .getResultList();
 	    return e;
 	}
-	public static List<ElementoBibliotecario> ricercaElementoPrestato(int nT) {
+	public static List<ElementoBibliotecario> ricercaElementoPrestato(int nT) throws SQLException {
 	    List<ElementoBibliotecario> elementiInPrestito = em.createQuery("SELECT p.elementoPrestato FROM Prestito p WHERE p.utente.numeroTessera = :numeroTessera AND p.dataRestituzioneEffettiva IS NULL", ElementoBibliotecario.class)
 	        .setParameter("numeroTessera", nT)
 	        .getResultList();
 	    return elementiInPrestito;
 	}
-	public static List<Prestito> ricercaPrestitiScadutiNonRestituiti() {
+	public static List<Prestito> ricercaPrestitiScadutiNonRestituiti() throws SQLException {
 	    LocalDate dataAttuale = LocalDate.now();
 	    List<Prestito> prestitiScaduti = em.createQuery(
 	        "SELECT p FROM Prestito p WHERE p.dataRestituzionePrevista < :dataAttuale AND p.dataRestituzioneEffettiva IS NULL", Prestito.class)

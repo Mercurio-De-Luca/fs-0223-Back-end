@@ -12,7 +12,6 @@ public class Rivista extends ElementoBibliotecario {
 
 	public Rivista() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
     public Rivista(String isbn, String titolo, int annoPubblicazione, int numeroPagine, Periodicita periodicita) {
@@ -30,7 +29,7 @@ public class Rivista extends ElementoBibliotecario {
 
 	@Override
 	public String toString() {
-		return "Rivsta [Periodicita=" + Periodicita + "]";
+		return "Rivista [Isbn= " + getIsbn() + ", titolo= " + getTitolo() + ", annoPubblicazione= " + getAnnoPubblicazione() +  ", numeroPagine= " + getNumeroPagine() + ", periodicità= " + Periodicita + "]";
 	}
 	
 	

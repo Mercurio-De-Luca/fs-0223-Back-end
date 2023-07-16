@@ -1,7 +1,9 @@
 package com.compito.model;
 
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+
 
 @Entity
 public class ElementoBibliotecario {
@@ -15,7 +17,6 @@ public class ElementoBibliotecario {
 	
 	public ElementoBibliotecario() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 
