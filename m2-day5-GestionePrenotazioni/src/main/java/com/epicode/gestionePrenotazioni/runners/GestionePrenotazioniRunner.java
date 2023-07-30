@@ -60,11 +60,11 @@ public class GestionePrenotazioniRunner implements CommandLineRunner {
 //		gps.salvaUtente(u3);
 //		gps.salvaUtente(u4);
 //		gps.salvaUtente(u5);
-		
-		
-		gps.prenotaPostazione(p1, u5, LocalDate.of(2023, 05, 12));
-		gps.prenotaPostazione(p3, u4, LocalDate.of(2023, 05, 13));
-		gps.prenotaPostazione(p2, u2, LocalDate.of(2023, 05, 14));
+//		
+//		
+//		gps.prenotaPostazione(p1, u5, LocalDate.of(2023, 05, 12));
+//		gps.prenotaPostazione(p3, u4, LocalDate.of(2023, 05, 13));
+//		gps.prenotaPostazione(p2, u2, LocalDate.of(2023, 05, 14));
 		
 		
 		

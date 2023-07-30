@@ -44,20 +44,19 @@ public class GestionePrenotazioniService {
 		return customUtenteProvider.getObject().builder().username(username).nomeCompleto(nomeCompleto).email(email).build();
 	}
 	
-	public void prenotaPostazione(Postazione postazione, Utente utente, LocalDate data) {
+	public void prenotaPostazione(Postazione postazione, Utente utente, LocalDate data) throws Exception {
 		
-		List<Prenotazione> prenotazioni =(List<Prenotazione>) repoPrenotazione.findAll();
-		for(Prenotazione post : prenotazioni) {
-			if(post.getData() == null) {
-				Prenotazione prenotazione = new Prenotazione();
-				prenotazione.setPostazione(postazione);
-				prenotazione.setUtente(utente);
-				prenotazione.setData(data);
-				repoPrenotazione.save(prenotazione);
-			}else if(post.getData().equals(data)) {
-				System.out.println("error");
-			}
-		}
+        List<Prenotazione> prenotazioni = repoPrenotazione.findByPostazioneAndData(postazione, data);
+        if (!prenotazioni.isEmpty()) {
+            throw new Exception("La postazione è già prenotata per questa data.");
+        }
+
+       
+        Prenotazione prenotazione = new Prenotazione();
+        prenotazione.setPostazione(postazione);
+        prenotazione.setUtente(utente);
+        prenotazione.setData(data);
+        repoPrenotazione.save(prenotazione);
 		
 	}
 	
