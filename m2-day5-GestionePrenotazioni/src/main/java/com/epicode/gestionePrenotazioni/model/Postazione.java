@@ -1,6 +1,6 @@
 package com.epicode.gestionePrenotazioni.model;
 
-import com.epicode.gestionePrenotazioni.enums.TipoPostazione;
+import com.epicode.gestionePrenotazioni.enumerated.TipoPostazione;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -10,33 +10,31 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
 @Builder
-@Entity    
-@Table(name = "postazioni")
+@Entity
 public class Postazione {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	private String codice;
-	private String descrizione;
-	@Enumerated(EnumType.STRING)
-	private TipoPostazione tipo;
-	private int numeroMassimoOccupanti;
-	@ManyToOne
-	@JoinColumn(name = "edificio_id")
-	private Edificio edificio;
-	
-	
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+    private String codice;
+    private String descrizione;
+    @Enumerated(EnumType.STRING)
+    private TipoPostazione tipo;
+    private int numeroMassimoOccupanti;
+    @ManyToOne
+    @JoinColumn(name = "edificio_id")
+    private Edificio edificio;
+
 	public Postazione(String codice, String descrizione, TipoPostazione tipo, int numeroMassimoOccupanti,
 			Edificio edificio) {
 		super();
@@ -46,6 +44,7 @@ public class Postazione {
 		this.numeroMassimoOccupanti = numeroMassimoOccupanti;
 		this.edificio = edificio;
 	}
-	
-	
+    
+    
+
 }
