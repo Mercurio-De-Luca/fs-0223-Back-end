@@ -1,10 +1,13 @@
 package com.epicode.gestioneDispositivi.model;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -33,6 +36,15 @@ public class Utente {
 	@Column(nullable = false, unique = true)
 	private String email;
 	
-	
-	private Dispositivo dispositivo;
+	@OneToMany(mappedBy = "utente")
+	private List<Dispositivo> dispositivo;
+
+	public Utente(String username, String nome, String cognome, String email, List<Dispositivo> dispositivo) {
+		super();
+		this.username = username;
+		this.nome = nome;
+		this.cognome = cognome;
+		this.email = email;
+		this.dispositivo = dispositivo;
+	}
 }
